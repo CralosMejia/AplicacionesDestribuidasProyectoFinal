@@ -1,0 +1,64 @@
+<!-- -------------------------------------------------------------------------------------------------------- -->
+<!-- Table -->
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Usuarios: {{userName}}</h4>
+                <h6 class="card-subtitle">Usuarios registrados en la aplicacion: {{totalUsuarios}}</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr >
+                                <th>Correo</th>
+                                <th>Nombre</th>
+                                <th>Role</th>
+
+                                <th class="text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let usuario of listUsers" class=".w100">
+
+                                <td >
+                                  <input *ngIf="rol === 'adm'" [(ngModel)]="usuario.email">
+                                  <input *ngIf="rol !== 'adm'" type="text"  [disabled]=" usuario.id != userID" [(ngModel)]="usuario.email" >
+                                </td>
+                                <td>
+                                  <input *ngIf="rol === 'adm'" type="text"  [(ngModel)]="usuario.username">
+                                  <input *ngIf="rol !== 'adm'" type="text"  [disabled]=" usuario.id != userID" [(ngModel)]="usuario.username">
+                                </td>
+                                <td class=".w100">
+                                    <select  [disabled]="rol != 'adm'" class="form-control" #selection>
+                                        <option value="adm" [selected]="usuario.rol == 'adm'">Admin</option>
+                                        <option value="cli" [selected]="usuario.rol == 'cli'">User</option>
+                                    </select>
+                                </td>
+                                <td class="text-nowrap w100 text-center" >
+                                    <a
+                                    data-toggle="tooltip"
+                                    data-original-title="Borrar"
+                                    class="cursor" (click)="actualizar(usuario.id,usuario.username,usuario.email,usuario.pass,selection.value)">
+                                        <i class="fa fa-pencil"></i>
+                                     </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- <div *ngIf="txtBuscar.value.length === 0">
+                    <button class="btn btn-secondary" (click)="cambiarPagina(-5)">Anterior</button>
+                    &nbsp;
+                    <button (click)="cambiarPagina(5)" class="btn btn-secondary">Siguiente</button>
+                </div> -->
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
