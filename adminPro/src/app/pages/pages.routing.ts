@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -24,6 +25,9 @@ const routes:Routes=[
   imports: [
     RouterModule.forChild(routes)
   ],
-  exports:[RouterModule]
+  exports:[RouterModule],
+  providers:[
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ]
 })
 export class PagesRoutingModule { }

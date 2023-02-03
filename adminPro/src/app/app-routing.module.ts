@@ -8,6 +8,7 @@ import { AuthRoutingModule } from './auth/auth.routing';
 
 //Components
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const routes:Routes=[
 
@@ -26,6 +27,9 @@ const routes:Routes=[
     PagesRoutingModule,
     AuthRoutingModule
   ],
-  exports:[RouterModule]
+  exports:[RouterModule],
+  providers:[
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ]
 })
 export class AppRoutingModule { }
